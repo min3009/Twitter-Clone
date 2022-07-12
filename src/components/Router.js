@@ -11,9 +11,19 @@ import Profile from "routes/Profile";
         <Router>
             {isLoggedIn && <Navigation userObj={userObj} />}
             <Switch>
+                <>
                     {isLoggedIn ? 
                     (
-                    <>
+                        <div
+                        style={{
+                          maxWidth: 890,
+                          width: "100%",
+                          margin: "0 auto",
+                          marginTop: 80,
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
                      <Route exact path="/"> 
                          <Home userObj={userObj} />
                      </Route> 
@@ -21,7 +31,7 @@ import Profile from "routes/Profile";
                          <Profile userObj={userObj} refreshUser={refreshUser} />
                      </Route>
                 
-                     </>
+                     </div>
                     )
                         : 
                     (
@@ -33,6 +43,7 @@ import Profile from "routes/Profile";
                     </>
                      )
                       }
+                </>
             </Switch>
         </Router>
     )
