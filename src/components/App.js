@@ -11,16 +11,30 @@ function App() {
     authService.onAuthStateChanged(function(user){
       if (user){
         setIsLoggedIn(true);
-        setUserObj(user);
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
       }else{
         setIsLoggedIn(false);
+        setUserObj(null);
       }
       setInit(true);
     })
   },[])
+
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  }
   return (
     <>
-      {init ? <AppRouter userObj={userObj} isLoggedIn={isLoggedIn} /> : "Initializing..." }
+      {init ? <AppRouter refreshUser={refreshUser} userObj={userObj} isLoggedIn={isLoggedIn} /> : "Initializing..." }
       <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
     </>
   );
