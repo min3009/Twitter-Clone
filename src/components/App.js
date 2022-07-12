@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       {init ? <AppRouter refreshUser={refreshUser} userObj={userObj} isLoggedIn={isLoggedIn} /> : "Initializing..." }
-      <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
+      <footer style={{textAlign: 'center'}}>&copy; {new Date().getFullYear()} Nwitter</footer>
     </>
   );
 }
